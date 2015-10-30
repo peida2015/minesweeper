@@ -18,7 +18,11 @@ class Board
   end
 
   def flag(pos)
-    @grid[pos].nil?
+    if self[pos].nil?
+      Tile.new(nil, pos, true)
+    else
+      selfp[pos].flagged = true
+    end
   end
 
   def bomb_spots

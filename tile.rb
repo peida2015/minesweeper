@@ -36,7 +36,11 @@ class Tile
   end
 
   def inspect
-    "#{@value}"
+    if flagged
+      "f"
+    else
+      "#{@value}"
+    end
   end
 
   def neighbor_bomb_count

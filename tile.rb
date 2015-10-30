@@ -1,6 +1,6 @@
 class Tile
 
-  attr_reader :value, :pos
+  attr_reader :value, :pos, :board
   attr_accessor :revealed
 
   NEIGHBOR_STEPS = [[0,  1],
@@ -12,9 +12,10 @@ class Tile
                     [1,  0],
                     [1, -1] ]
 
-  def initialize(value = nil, pos = [0,0])
+  def initialize(value = nil, pos = [0,0], board)
     @value = value
     @pos = pos
+    @board = board
     @revealed = false
   end
 

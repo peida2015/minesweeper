@@ -1,7 +1,9 @@
+require_relative 'board.rb'
+
 class Tile
 
   attr_reader :value, :pos, :board
-  attr_accessor :revealed
+  attr_accessor :revealed, :flagged
 
   NEIGHBOR_STEPS = [[0,  1],
                     [0, -1],
@@ -17,6 +19,7 @@ class Tile
     @pos = pos
     @board = board
     @revealed = false
+    @flagged = false
   end
 
   def reveal
@@ -25,7 +28,15 @@ class Tile
   end
 
   def neighbors
-    NEIGHBOR_STEPS.map { |step| p [pos[0] + step[0], pos[1] + step[1]]  }
+    all_neighbors = NEIGHBOR_STEPS.map { |step| p [pos[0] + step[0], pos[1] + step[1]]  }
+    all_neighbors.select do |pos|
+      (pos[0] >= 0 && pos[0] < @board.grid.size) &&
+      (pos[1] >= 0 && pos[1] < @board.grid.size)
+    end
+  end
+
+  def inspect
+    "#{@value}"
   end
 
   def neighbor_bomb_count

@@ -28,7 +28,7 @@ class Tile
   end
 
   def neighbors
-    all_neighbors = NEIGHBOR_STEPS.map { |step| p [pos[0] + step[0], pos[1] + step[1]]  }
+    all_neighbors = NEIGHBOR_STEPS.map { |step| [pos[0] + step[0], pos[1] + step[1]]  }
     all_neighbors.select do |pos|
       (pos[0] >= 0 && pos[0] < @board.grid.size) &&
       (pos[1] >= 0 && pos[1] < @board.grid.size)
@@ -43,7 +43,7 @@ class Tile
     end
   end
 
-  def neighbor_bomb_count
-    neighbors.count {|neighbor| neighbor.value == :B }
+  def neighbor_bomb_count ####FIX THIS
+    neighbors.count {|neighbor| !@board[neighbor].nil? && board[neighbor].value == :b }
   end
 end

@@ -21,7 +21,7 @@ class Board
     if self[pos].nil?
       Tile.new(nil, pos, true)
     else
-      selfp[pos].flagged = true
+      self[pos].flagged = true
     end
   end
 
